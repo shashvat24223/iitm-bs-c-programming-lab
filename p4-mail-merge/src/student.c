@@ -23,7 +23,7 @@
  */
 void print_student(student_t* s)
 {
-    printf("hello");
+    printf(...);
 }
 
 // Task 3: Implement the compute_grade_function
