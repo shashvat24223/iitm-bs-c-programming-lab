@@ -5,13 +5,13 @@
 
 int main()
 {
+    puts("Test Read CSV...");
     student_t *students;
 
-    int n = get_student_data_from_csv("students.csv", students);
+    int n = get_student_data_from_csv("students.csv", &students);
 
     for (int i = 0; i < n; i++)
     {
-        student_t *s = &students[i];
-        print_student(s);
+        print_student(students + i);
     }
 }

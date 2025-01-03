@@ -10,12 +10,17 @@ int file_get_n_lines(char *filename)
     FILE *f = fopen(filename, "r");
     char c;
     int n_lines = 0;
-    while (c = fgetc(f))
+    while ((c = fgetc(f)) != EOF)
     {
         if (c == '\n')
         {
             n_lines++;
         }
+    }
+    fseek(f, -1, SEEK_CUR);
+    if (fgetc(f) != '\n')
+    {
+        n_lines++;
     }
     fclose(f);
     return n_lines;
@@ -44,4 +49,3 @@ char *file_get_content(char *filename)
     fclose(f);
     return content;
 }
-

@@ -11,30 +11,39 @@ int main(int argc, char **argv)
     if (argc < 3)
     {
         puts(
-            "Usage: result-mail-merge student.csv output_dir\n"
+            "Usage: ./mail-merge-results students.csv output_dir\n"
             "student.csv should have three columns: name, rollno and marks.");
+        return 0;
     }
-    // Pointer for the
+    // Pointer for holding the dynamically allocated student array.
     student_t *students;
     char *filename = argv[1];
     char *output_dir = argv[2];
     int n_students;
 
+    // Creating the directory.
     mkdir(output_dir, S_IRWXU | S_IRWXO | S_IRWXG);
 
-    n_students = get_student_data_from_csv(filename, students);
+    n_students = get_student_data_from_csv(filename, &students);
 
-    // Task 4: Create the template as c string.
-    char template[] = "";
+    // Task 4: Create the template from template.txt as a multiline c string.
+    char template[] = "..." ;
 
     // Loop over all students compute grade and write to name.txt files
     for (int i = 0; i < n_students; i++)
     {
         char filename[100];
-        snprintf(filename, 100, "%s/%s.txt");
         student_t *s = &students[i];
-        file_printf_content(
-            filename, template,
-            s->name, s->rollno, s->name, s->marks, s->grade);
+
+        // Creating the output file path
+        snprintf(filename, 100, "%s/%s.txt", output_dir, s->rollno);
+
+        // Task 5: Print the template to the file using the file_printf macro
+
+        // use file_printf macro (defined in utils.h) to format the template
+        // check test/test_file_printf.c for usage example
+        
+        // file_printf(...)
+            
     }
 }

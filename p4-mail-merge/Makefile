@@ -1,4 +1,4 @@
-# .SILENT:
+.SILENT:
 .PHONY: test
 
 CC=gcc
@@ -8,7 +8,7 @@ SRC=$(wildcard src/*)
 
 all: main
 main: ${DEPS}
-	${CC} ${INC} ${SRC} -o result-mail-merge
+	${CC} ${INC} ${SRC} -o mail-merge-results
 
 test_%:
 	${CC} ${INC}  $(filter-out src/main.c, ${SRC}) test/$@.c -o temp && ./temp

@@ -1,10 +1,60 @@
-# Template expander
+# Mail Merge
 
-The goal of this project is to write a simple template expander in C.  This will be used to generate a series of "form letters" to be sent to students with their marks and grades.
+The goal of this project is to write a simple mail merge program in C.  This will be used to generate a series of "form letters" to be sent to students with their marks and grades.
 
-The input to this program will be a single file:
+The input to this program will be a csv file:
 
 - `students.csv`: This is a CSV (comma-separated values) file that contains a list of students for whom you need to create the form letters.
+
+## Project structure
+
+```
+├── inc (contains the header files)
+│   ├── student.h (student_t and function declarations)
+│   └── utils.h (function declarations and file_printf macro)
+├── Makefile (contains targets for building and testing)
+├── README.md
+├── mail-merge-results (generated using the make command)
+├── src (the source files)
+│   ├── main.c (mail-merge program with command-line arguments)
+│   ├── student.c (functions related to student)
+│   └── utils.c (some file related utitlity functions)
+├── students.csv (student data)
+├── template.txt (sample template format)
+└── test (contains sample programs that test a particular function)
+    ├── test_compute_grade.c
+    ├── test_file_get_content.c
+    ├── test_file_n_lines.c
+    ├── test_file_printf.c
+    ├── test_read_csv.c
+    └── test_student_struct.c
+```
+
+## Tasks
+
+1. Defining `student_t` type in `student.h`
+2. Implementing the `print_student` function in `student.c`.  
+    Run `make test_student_struct` to test this function.
+3. Implementing the `compute_grade` function in `student.c`.   
+   Run `make test_compute_grade` to test this function.
+4. Completing the `get_student_data_from_csv` function in `student.c`.  
+   Run `make test_read_csv` to test this this function.
+5. Creating a c-style format string in `main.c` similar to the example in `template.txt` file.
+6. Using the `file_printf` macro (defined in `utils.h`) in `main.c` to print each template to the required files.
+
+
+After completing the above tasks, run `make` to build the `mail-merge-results` executable. 
+
+Perform the mail merge by passing the csv file and the output directory as command-line arguments.
+
+```
+./mail-merge-results students.csv output_dir
+```
+
+Now the reqired files will have generated in a folder called `output_dir`.
+
+
+
 
 ## Template expansion
 
@@ -74,23 +124,7 @@ xyz987.txt
 iop567.txt
 ```
 
-## Problem statement
-
-A detailed set of steps for solving the problem are given below.  You need to demonstrate the output of the template expander to the TAs.  Note that you can skip straight to the end and demonstrate just the final code.  The intermediate files are given as helping stages, and will be evaluated for partial credit if the overall problem is not solved.
-
-## Requirements and Useful Information
-
-### Code structure
-
-You are required to define a `struct` type called `student_t` that holds the required information.  The struct should contain strings and numeric types as required to store the information.  The strings should be of maximum length 20 characters, and the marks should be a non-negative integer.
-
-Define functions for the following:
-
-- `read_csv`: should read from a given filename and return an array of structs
-- `compute_grade(student_t)`: take a student struct as input and return the grade
-- `write_file(student_t)`: create a file for the given roll number and write the output
-
-### Useful functions
+## Useful functions
 
 - [`fgets`](https://en.cppreference.com/w/c/io/fgets)
 - [`fscanf`](https://en.cppreference.com/w/c/io/fscanf)
@@ -105,28 +139,3 @@ You should be able to read the CSV file using the `strtok` function, but you can
 
 The `strstr` function can be useful to find placeholders and replace them with format specifiers (such as `%s`).
 
-## Assignment
-
-You are given the following pieces of code as starters for the various steps involved.  You need to complete the corresponding codes and demonstrate them working to the TAs.
-
-### Step 1: struct declaration and printing
-
-The file `1_template_struct.c` contains some code that has a partial definition of a `struct`.  Structs were covered in Week 8, and are used to organize data into records.  Here we will define a struct, assign initial values to it, and write a function to print it out.
-
-### Step 2: compute grade
-
-Given a struct as input, write a function that will compute the grade from the mark, and update the struct.  
-
-Modify the previous function to also print out the grade as shown in the example.
-
-### Step 3: read lines into struct with fgets and sscanf
-
-The `fgets` function can be used to read a string from a file into a buffer, and then `sscanf` function can be used to read formatted data from a string into other variables.  Here we will use a special format string that allows us to easily read the CSV file.  The function should return the total number of records that have been read so far.
-
-Use the previous functions to compute the grades for each record, and then print out the values.
-
-### Step 4: Fill in template and print
-
-The template is given directly as a string with `%s`, `%d` etc in appropriate places.  You need to create a `printf` function call that will print out the correct output.  Do this for each of the student records.
-
-To write this to a file, you first need to create the name of the file.  Here you can use the `sprintf` function to create the output filename, open it for writing, then use `fprintf` to write to that file.

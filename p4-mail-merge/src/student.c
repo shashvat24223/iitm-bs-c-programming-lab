@@ -13,7 +13,7 @@
  * @brief Prints the student struct
  * @param s student struct
  *
- * Prints the output in the following format:
+ * Prints the output in the following format with a next line character at the end:
  *
  * `{name} ({rollno}) got grade {grade} with {marks} marks.`
  *
@@ -21,17 +21,16 @@
  *
  * Nitin C (abc123) got grade D with 50 marks.
  */
-void print_student(student_t* s)
+void print_student(student_t *s)
 {
-    printf(...);
+    printf("");
 }
 
 // Task 3: Implement the compute_grade_function
 
 /**
- * @brief Computes the grade based on the student marks
+ * @brief Computes the grade based on the student marks and assigns to the grade attribute.
  * @param student Pointer to the student
- * @return The grade as character
  *
  * The grades are assinged as follows
  *  - marks >= 90: S
@@ -42,35 +41,38 @@ void print_student(student_t* s)
  *  - 50 > marks >= 40: E
  *  - marks < 40: U
  */
-char compute_grade(student_t *s)
+void compute_grade(student_t *s)
 {
+    
 }
 
 // Task 4: Fill the ... parts in the get_student_data_from_csv function
 
-/// @brief Get the sudent data as a dynamic array from a csv file.
+/// @brief Get the student data as a dynamic array from a csv file.
 /// @param filename The csv file
-/// @param students Pointer to hold the array of students
+/// @param students Pointer to pointer that holds the array of students
 /// @return The number of elements in the student array
-int get_student_data_from_csv(char *filename, student_t *students)
+int get_student_data_from_csv(char *filename, student_t **s_arr_ptr)
 {
 
     // Uncomment the below and fill the necessary parts.
 
-    // Get the number of lines in the file
-    // int num = file_get_n_lines(...);
+    // Get the number of lines in the file (find the required function from utils.h)
+    // int num = ...;
 
     // Dynamically allocate space for the students.
-    // students = malloc(...);
+    // *s_arr_ptr = malloc(...);
 
     // Open a file for reading
-    // FILE *fp = fopen(filename, "r");
-    // char buf[MAX_STRING];
-    
-    // while (fgets(buf, MAX_STRING, fp) != NULL)
+    // FILE *f = fopen(filename, "r");
+
+    // student_t *s_arr = *s_arr_ptr; // for simplifying notation.
+
+    // for (int i = 0; i < num; i++)
     // {
-    //     student_t *s = &students[num];
-    //     sscanf(buf, "%[^,],%[^,],%d", &(s->name), &(s->rollno), &(s->marks));
+    //     student_t *s = s_arr + i;
+    //     // Read the attributes of s from csv
+    //     fscanf(f, "%[^,],%[^,],%d\n", ...);
     //     compute_grade(s);
     // }
     // return num;

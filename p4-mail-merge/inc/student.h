@@ -26,8 +26,8 @@ typedef struct student
 
 void print_student(student_t *s);
 
-char compute_grade(student_t *s);
+void compute_grade(student_t *s);
 
-int get_student_data_from_csv(char *filename, student_t *s_array);
+int get_student_data_from_csv(char *filename, student_t **s_arr_ptr);
 
 #endif

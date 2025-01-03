@@ -3,6 +3,7 @@
 
 int main()
 {
+    puts("Testing Compute Grade...");
     student_t s = {
         .name = "Nitin C",
         .rollno = "abc123",

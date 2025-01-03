@@ -3,6 +3,7 @@
 
 int main()
 {
+    puts("Test Student Struct...");
     student_t s = {
         .name = "Nitin C",
         .rollno = "abc123",
