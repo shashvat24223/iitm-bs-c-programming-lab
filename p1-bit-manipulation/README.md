@@ -7,10 +7,10 @@ Assume room number 1 correspond to the LSB and increases all the way to 16 which
 **Tasks**
 
 1. Toggle the lights of every $k$th room of the building from the left.
-2. Turn on the lights of the given set of rooms.
-3. Turn off the lights of the given set of rooms.
-4. Toggle the lights in the even room numbers.
-5. Find the number of lights are on at the end of the process.
+2. Toggle the lights in the even room numbers.
+3. Turn on the lights of the given set of rooms.
+4. Turn off the lights of the given set of rooms.
+5. Find the number of lights are ON at the end of the process.
 
 **Input Format**
 
@@ -31,48 +31,46 @@ Output consists of six lines
 6. Total number of lights are on at the end of the process.
 
 
-**Sample Input**
+**Sample I/O**
 
 ```
-563
-5
-2 8 9 -1
-5 9 -1
-```
+Enter a positive integer: 567
+The 16-bit binary representation is:    0000 0010 0011 0111 
+Enter the value for k: 5
+After toggling every k-th room (k=5):   0100 0000 0010 0111 
+After toggling lights in even rooms:    1110 1010 1000 1101 
 
-**Sample Output**
-
-```
-0000001000110011
-After toggling every 5th room: 0100000000100011
-After turning ON the given lights: 0100000110100011
-After turning OFF the given lights: 0100000010100011
-After toggling lights in even rooms: 1110101000001001
-Total number of lights ON = 7
+Numbers to turn on (end with -1): 
+1 2 3 4 -1
+After turning ON the given lights:      1110 1010 1000 1111 
+Numbers to turn off (end with -1): 
+9 10 11 12 -1
+After turning OFF the given lights:     1110 0000 1000 1111 
+Total number of lights ON = 8
 ```
 
 **Explanation**
 
 1. First line has the 16-bit binary representation of the bits.  
-   $563_{10}$ -> $1000110011_{2}$ -> $0000001000110011$ (as 16 bit)
+   567<sub>10</sub> -> 0000 0010 0011 0111 <sub>2</sub>  (as 16 bit binary)
 2. After toggling every 5th room.  
    ```
-   0000 0010 0011 0011
-   0100 0000 0010 0011
+   0000 0010 0011 0111 
+   0100 0000 0010 0111
    ```
-3. After turning ON lights in room number 2, 8 and 9.  
+3. After toggling lights in even rooms.
    ```
-   0100 0000 0010 0011
-   0100 0001 1010 0011 (2 is already ON so no change)
+   0100 0000 0010 0111
+   1110 1010 1000 1101
    ```
-4. After turning OFF lights in room 5 and 9.
+4. After turning ON lights in room number 1, 2, 3 and 4.
    ```
-   0100 0001 1010 0011
-   0100 0000 1010 0011 (5 is already OFF so no change)
+   1110 1010 1000 1101 
+   1110 1010 1000 1111  (1, 3 and 4 are already ON so no change)
    ```
-5. After toggling lights in even rooms.
+5. After turning OFF lights in room number 9, 10, 11 and 12.
    ```
-   0100 0000 1010 0011
-   1110 1010 0000 1001
+   1110 1010 1000 1111
+   1110 0000 1000 1111 (9 and 11 are already OFF so no change)
    ```
-6. The number of bits set in the final represenation in 7.
+6. The number of bits set in the final represenation in 8.
