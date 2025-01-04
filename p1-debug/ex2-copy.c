@@ -8,6 +8,8 @@ void string_copy(char s[], char d[]){
         d[i] = s[i];
         i++;
     }
+        d[i] = '\0';
+
 }
 
 int main(){

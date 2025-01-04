@@ -19,6 +19,10 @@
  */
 typedef struct student
 {
+char name[20];
+char rollno[10];
+int marks;
+char grade;
 
 } student_t;
 

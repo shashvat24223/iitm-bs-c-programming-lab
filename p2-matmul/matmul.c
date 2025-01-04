@@ -11,6 +11,14 @@
 /// @param A 2D array of dimension DIMxDIM defined by the DIM macro.
 void read_mat(char *filename, float A[DIM][DIM])
 {
+FILE *f = fopen(filename,"r");
+for(int i=0;i<DIM;i++) {
+for(int j=0;j<DIM;j++) {
+fscanf(f,"%f",&A[i][j]);
+}
+}
+fclose(f);
+
 }
 
 /**
@@ -24,6 +32,12 @@ void read_mat(char *filename, float A[DIM][DIM])
  */
 void print_mat(float A[DIM][DIM])
 {
+    for(int i=0;i<DIM;i++) {
+for(int j=0;j<DIM;j++) {
+printf("%f",A[i][j]);
+}
+printf("\n");
+    }
 }
 
 /// @brief Performs the matrix multiplication on Matrix A and B and saves the results to Matrix C
@@ -32,6 +46,14 @@ void print_mat(float A[DIM][DIM])
 /// @param C Output Matrix C
 void matmul(float A[DIM][DIM], float B[DIM][DIM], float C[DIM][DIM])
 {
+for(int i=0;i<DIM;i++) {
+for(int j=0;j<DIM;j++) {
+C[i][j] = 0;
+for(int k=0;k<DIM;k++) {
+    C[i][j] += A[i][k] * B[k][j]; 
+}
+}
+}
 }
 
 double gettime()
@@ -64,12 +86,12 @@ int main()
     // Task 2: Perform Matrix multiplication
     // Uncomment the below part after doing task 1.
 
-    // double t1 = gettime();
-    // // Declare a matrix C and use it for multiplication
-    // matmul(A, B, C);
-    // double t2 = gettime();
-    // printf("Matrix C: \n");
-    // print_mat(C);
+    double t1 = gettime();
+    // Declare a matrix C and use it for multiplication
+    matmul(A, B, C);
+    double t2 = gettime();
+    printf("Matrix C: \n");
+    print_mat(C);
 
-    // printf("Time taken: %8.4g milliseconds\n", (t2-t1)*1000);
+    printf("Time taken: %8.4g milliseconds\n", (t2-t1)*1000);
 }
